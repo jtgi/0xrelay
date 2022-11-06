@@ -67,7 +67,7 @@ function SuccessModal() {
           <ModalBody>
             <div style={{ textAlign: 'center' }}>
               <VStack spacing={5}>
-                <div>You'll now receive notifications in discord. Invite the 0xRelay bot to your server to get started.</div>
+                <div>You will now receive notifications in discord. Invite the 0xRelay bot to your server to get started.</div>
                 <div>Or, try out our <Link href="https://discord.gg/vBqFhj85" color="teal.600" target="_blank">demo server here</Link></div>
               </VStack>
             </div>
