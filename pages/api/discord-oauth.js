@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     res.status(400).send();
   }
 
-  // try {
     const { data } = await axios.post(
       'https://discord.com/api/v8/oauth2/token',
       new URLSearchParams({
@@ -25,9 +24,5 @@ export default async function handler(req, res) {
       }
     );
 
-    return res.redirect('/discord?discord-jwt=' + data.access_token)
-  // } catch (e) {
-  //   console.error('Failed to auth', e.message, e.response.data);
-  //   res.status(400).send();
-  // }
+  return res.redirect('/discord?discord-jwt=' + data.access_token)
 }

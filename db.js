@@ -45,13 +45,15 @@ export default class PScale {
   }
 
   async saveUser({ wallet, discordId }) {
-    const query = "INSERT INTO users (wallet, discord_id) VALUES (?, ?)";
-    this.conn.query(query, [wallet, discordId], (err, rows) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(rows);
-      }
-    });
+    return new Promise((resolve, reject) => {
+      const query = "INSERT INTO users (wallet, discord_id) VALUES (?, ?)";
+      this.conn.query(query, [wallet, discordId], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    })
   }
 }

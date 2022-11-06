@@ -1,10 +1,11 @@
 import { CheckIcon } from '@chakra-ui/icons';
-import { Button, Spinner, VStack } from '@chakra-ui/react';
+import { Button, Heading, Spinner, VStack } from '@chakra-ui/react';
+
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useAccount, useSignMessage } from 'wagmi';
+import { useAccount, useSigner, useSignMessage } from 'wagmi';
 
 export default function Discord() {
   const router = useRouter();
@@ -42,26 +43,26 @@ export default function Discord() {
     },
   })
 
+  const signer = useSigner();
+
   const discordOauth = () => {
     window.location.href = process.env.NEXT_PUBLIC_REDIRECT_URI;
   }
 
   return (
     <div>
-      <div>
-        <h1>Dashboard</h1>
-        <VStack spacing={4} width={500}>
-          <div>
-            {discordJWT && <CheckIcon />} <OAuthButton onClick={discordOauth}>Connect Discord</OAuthButton>
+      <VStack spacing={5} width={500}>
+        <Heading>Connect Discord</Heading>
+        <div>
+          {discordJWT && <CheckIcon />} <OAuthButton size={"lg"} onClick={discordOauth}>Login with Discord</OAuthButton>
           </div>
           <div>
-            {signature && <CheckIcon />} <Button onClick={() => sig.signMessage({ message })}>Sign Message</Button>
+          {signature && <CheckIcon />} <Button size="lg" onClick={() => sig.signMessage({ message })}>Sign Message</Button>
           </div>
           <div>
-            <Button onClick={onSave}>{isLoading && <span><Spinner />&nbsp;</span>}Save</Button>
+          <Button size="lg" variant="solid" disabled={!discordJWT && !signature} onClick={onSave}>{isLoading && <span><Spinner />&nbsp;</span>}Save</Button>
           </div>
-        </VStack>
-      </div>
+      </VStack>
     </div>
   )
 }
@@ -74,7 +75,7 @@ const OAuthButton = ({ onClick, ...props }) => {
       onClick(e);
     }}
     >
-      {loading && <span><Spinner />&nbsp;</span>}Connect Discord
+      {loading && <span><Spinner />&nbsp;</span>}Login with Discord
     </Button>
   );
 }
