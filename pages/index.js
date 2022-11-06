@@ -19,11 +19,7 @@ export default function Home() {
         <title>0xRelay</title>
         <link rel="icon" href="/favicon.ico" />
 
-        <meta property="og:title" content="0xRelay - Message any ethereum address." />
-        <meta property="og:site_name" content="0xRelay" />
-        <meta property="og:description" content="0xRelay web3 messages to all your " />
-        <meta name="theme-color" content="#55bbee" />
-        <meta name="twitter:card" content="summary_large_image" />
+
       </Head>
 
       <VStack spacing={25}>

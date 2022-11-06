@@ -43,13 +43,11 @@ function OxRelay({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <meta property="og:title" content="Welcome to Cookie and Rock" />
-        <meta property="og:site_name" content="Cookie and rock" />
-        <meta property="og:description" content="The best place to..." />
-        <meta property="og:image" content="/logo/cookieandrock-logo.png" />
+        <meta property="og:title" content="0xRelay - Message any ethereum address." />
+        <meta property="og:site_name" content="0xRelay" />
+        <meta property="og:description" content="0xRelay web3 messages to all your " />
         <meta name="theme-color" content="#55bbee" />
         <meta name="twitter:card" content="summary_large_image" />
-
       </Head>
 
       <WagmiConfig client={wagmiClient}>
