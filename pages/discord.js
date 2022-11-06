@@ -33,7 +33,7 @@ export default function Discord() {
     });
   }, {
     onSuccess: () => {
-      router.push('/dashboard');
+      router.push('/dashboard?success=true');
     }
   })
 

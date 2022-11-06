@@ -1,9 +1,28 @@
-import { Heading, SimpleGrid, VStack } from "@chakra-ui/react";
+import { Heading, Link, SimpleGrid, VStack } from "@chakra-ui/react";
+import JSConfetti from 'js-confetti';
+
+
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { DiscordLoginButton, SlackLoginButton, TelegramLoginButton, TwitterLoginButton } from "react-social-login-buttons";
+
+import { CheckIcon } from "@chakra-ui/icons";
+import {
+  Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay
+} from '@chakra-ui/react';
 
 export default function Dashboard() {
   const router = useRouter();
+  const [show, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(document.location.search);
+    if (params.get('success')) {
+      setShowSuccess(true);
+      params.delete('success')
+    }
+
+  }, [])
 
   const style = {
     padding: '90px 40px',
@@ -15,6 +34,7 @@ export default function Dashboard() {
 
   return (
     <div>
+      {show && <SuccessModal />}
       <div>
         <VStack spacing={25}>
           <Heading as="h1" size={"2xl"}>Connect an account</Heading>
@@ -27,5 +47,34 @@ export default function Dashboard() {
         </VStack>
       </div>
     </div>
+  )
+}
+
+
+function SuccessModal() {
+  useEffect(() => {
+    const jsConfetti = new JSConfetti()
+    jsConfetti.addConfetti({
+      emojis: ['⚡️'],
+    })
+  }, [])
+  return (
+    <>
+      <Modal isOpen={true}>
+        <ModalOverlay />
+        <ModalContent style={{ padding: 25 }}>
+          <ModalHeader style={{ textAlign: 'center' }}><CheckIcon /> Success</ModalHeader>
+          <ModalBody>
+            <div style={{ textAlign: 'center' }}>
+              <VStack spacing={5}>
+                <div>You'll now receive notifications in discord. Invite the 0xRelay bot to your server to get started.</div>
+                <div>Or, try out our <Link href="https://discord.gg/vBqFhj85" color="teal.600" target="_blank">demo server here</Link></div>
+              </VStack>
+            </div>
+          </ModalBody>
+
+        </ModalContent>
+      </Modal>
+    </>
   )
 }

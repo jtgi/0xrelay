@@ -30,7 +30,7 @@ export default function Home() {
             '-webkit-text-fill-color': 'transparent'
           }}>0xRelay</Heading>
 
-          <Heading as="h2" size="xl">web3's missing messaging gateway.</Heading>
+          <Heading as="h2" size="xl">web3&lsquo;s missing messaging gateway.</Heading>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
